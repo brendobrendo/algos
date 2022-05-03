@@ -1,2 +1,17 @@
 # My algo README file
-This is a readme file
+## Arrays
+## Linked Lists
+## Stacks
+## Queues
+## Binary Search Trees (BSTs)
+### Searching
+#### Depth First Search (DFS)
+#### Breadth First Search (BFS)
+## AVL Trees
+## Heaps
+### Min-Heap
+### Max-Heap
+## Hash Tables
+## Graphs
+## Sets
+
