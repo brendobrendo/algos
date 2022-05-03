@@ -2,6 +2,7 @@
 class Node {
     constructor(val) {
         this.val = val;
+        this.level = 0;
         this.leftNode = null;
         this.rightNode = null;
 
@@ -36,7 +37,7 @@ class BST {
         if (this.isEmpty()) {
             this.root = newNode;
         } else {
-            this.insertNode(this.root, newNode);
+            return this.insertNode(this.root, newNode);
         }
     }
 
@@ -47,17 +48,18 @@ class BST {
      * @returns {BST} returns the BST with the newly inserted node
      */
     insertNode(root, newNode) {
+
         // Check if the newNode's value is less than the root's
         if (newNode.val < root.val) {
             // If it is, first check if there is a leftNode
             if (!root.leftNode) {
                 // If there isn't, insert the newNode in the leftNode spot
-                root.leftNode = newNode;
+                return root.leftNode = newNode;
             } else {
                 // If there is a leftNode, make recursive call using the leftNode
                 // in place of the rootNode
-                this.insertNode(root.leftNode, newNode);
-            }        
+                return this.insertNode(root.leftNode, newNode);
+            }
         } else {
             // If newNode is not less than the root
             // First check if there is a rightNode
@@ -68,7 +70,7 @@ class BST {
                 // If there is, make recursive call using the rightNode in place of root
                 this.insertNode(root.rightNode, newNode);
             }
-        }      
+        }
         return this
     }
 
@@ -151,7 +153,7 @@ class BST {
      * nodes are visited
      * Time: O(n) linear, every node is visited
      */
-    toArrPreorder(node=this.root, vals=[]) {
+    toArrPreorder(node = this.root, vals = []) {
         if (node !== null) {
             vals.push(node.val);
             this.toArrPreorder(node.leftNode, vals);
@@ -164,7 +166,7 @@ class BST {
      * DFS InOrder: (left, currNode, right)
      * Converts this BST into an array following DFS InOrder
      */
-    toArrInorder(node=this.root, vals=[]) {
+    toArrInorder(node = this.root, vals = []) {
         if (node !== null) {
             this.toArrInorder(node.leftNode, vals);
             vals.push(node.val);
@@ -180,7 +182,7 @@ class BST {
      * @returns {Array<number>} The vals in DFS Postorder once all nodes
      * have been visited
      */
-    toArrPostorder(node=this.root, vals=[]) {
+    toArrPostorder(node = this.root, vals = []) {
         if (node !== null) {
             this.toArrPostorder(node.leftNode, vals);
             this.toArrPostorder(node.rightNode, vals);
