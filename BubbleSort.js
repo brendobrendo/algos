@@ -36,7 +36,7 @@ function bubbleSort(arr=[]) {
 
 /**
  * Bubble sort with a while loop instead
- * @param {*} arr 
+ * @param {Number Array} arr unordered list of numbers 
  * @returns 
  */
 function bubbleSort2(arr=[]) {
