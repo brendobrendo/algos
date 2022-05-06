@@ -1,5 +1,6 @@
 # My algo README file
 ## Arrays
+Testing `git status`
 ## Linked Lists
 ## Stacks
 ## Queues
