@@ -1,5 +1,7 @@
 /**
  * Use selection sort to sort an (unordered) array
+ * When you think of selection sort, think of finding a max or min value that
+ * is to the right of (or is) the index of the current iteration
  * @param {Number Array} arr unordered array of numbers
  * @returns {Number Array} ordered array of numbers
  * Time complexity: O(N^2)
