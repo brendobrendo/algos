@@ -1,21 +1,35 @@
 // A weighted graph is comprised of nodes (such as locations on a map) and
-// edges (paths between nodes). THe space/time between nodes is the weight
+// edges (paths between nodes). The space/time between nodes is the weight
 // of the edge.
 
+/**
+ * Weighted graph used to represent locations (nodes) on a map and the spaces
+ * between them (edges)
+ */
 class Graph {
     constructor() {
         this.nodes = [];
         this.adjacencyList = {};
     };
 
+    /**
+     * Adds new node into array of nodes
+     * @param {String} node Name of location
+     */
     addNode(node) {
         this.nodes.push(node);
         this.adjacencyList[node] = [];
     };
 
+    /**
+     * Adds edges to to the adjacency list
+     * @param {String} node1 
+     * @param {String} node2 
+     * @param {Number} weight The edge / distance between the two input nodes
+     */
     addEdge(node1, node2, weight) {
-        this.adjacencyList[node1].push({node:node2, weight: weight});
-        this.adjacencyList[node2].push({node: node1, weight: weight});
+        this.adjacencyList[node1].push({node:node2, weight:weight});
+        this.adjacencyList[node2].push({node: node1, weight:weight});
     }
 
     findPathWithDijkstra(startNode, endNode) {
