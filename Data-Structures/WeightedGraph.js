@@ -64,6 +64,10 @@ class Graph {
     }
 }
 
+/**
+ * Queue to hold all the locations/nodes visited while traversing the 
+ * map/graph
+ */
 class PriorityQueue {
     constructor() {
         this.collection = [];
