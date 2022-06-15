@@ -3,8 +3,8 @@
 // of the edge.
 
 /**
- * Weighted graph used to represent locations (nodes) on a map and the spaces
- * between them (edges)
+ * Nodes can represent places and edges can represent the distance btween 
+ * places
  */
 class Graph {
     constructor() {

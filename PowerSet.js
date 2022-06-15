@@ -23,6 +23,7 @@ let subsets = (nums, depth=0, subset=[], results=[]) => {
     } else {
         // Recursive case
         subsets(nums, depth+1, subset, results)
+        // Use spreading
         subsets(nums, depth+1, [...subset, nums[depth]], results)
     }
     return results;
