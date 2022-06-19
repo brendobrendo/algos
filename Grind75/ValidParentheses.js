@@ -6,9 +6,9 @@ var isValid = function (s) {
     // Forgot to explain what a stack was and why I was using it
     let stack = [];
 
-    // Initialize closed character types
+    // Initialize closed character types in a hash map
     // Improvement: When I was updating the hash table, didn’t explain what I was doing
-    let closedCharacters = { '}':'{', ')':'(', ']':'[' }
+    let closedCharacterss = { '}':'{', ')':'(', ']':'[' }
 
     // Improvement: While I was coding this, didn’t talk through what I was coding
     for (let i = 0; i < s.length; i++) {
