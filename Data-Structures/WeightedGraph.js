@@ -10,11 +10,7 @@ class Graph {
     constructor() {
         // An array of all the nodes/places in the graph/map
         this.nodes = [];
-        // hashtable of arrays with hashtables
-        // keys are the nodes (places) on the graph (map)
-        // values are arrays full of key value pairs with the keys being the
-        // other nodes the current node is connected to and the value being
-        // the distance between those respective nodes
+        
         /**
          * Hashtable of arrays that contain key-value pairs
          * Keys for the main hash table are the nodes/places in the graph/map
@@ -104,16 +100,20 @@ class Graph {
         this.nodes.splice(nodeIndex, 1);
     }
 
+    
     findPathWithDijkstra(startNode, endNode) {
-        let times = {};
-        let backtrace = {};
+        let times = {}; // shortest known time. Key - destination node
+        // and value = the time to get there
+        let backtrace = {}; // steps we took to get to node in shortest known
+        // time. 
         let pq = new PriorityQueue();
 
         times[startNode] = 0;
 
         this.nodes.forEach(node => {
             if (node !== startNode) {
-                times[node] = Infinity
+                times[node] = Infinity // Initialize to infinity because the
+                // shortest time could be anything.
             }
         });
 
@@ -133,6 +133,16 @@ class Graph {
                 }
             })
         }
+
+        let path = [endNode];
+        let lastStep = endNode;
+
+        while (lastStep !== startNode) {
+            path.unshift(backtrace[lastStep])
+            lastStep = backtrace[lastStep]
+        }
+
+        return `Path is ${path} and time is ${times[endNode]}`
     }
 }
 
@@ -183,7 +193,7 @@ map.addEdge("UMC", "ViaTrib", 2);
 map.addEdge("UMC", "Zeeks", 4);
 map.addEdge("KerryPark", "SpaceNeedle", 5);
 map.addEdge("ViaTrib", "KerryPark", 2);
-map.addEdge("Zeeks", "KerryPark", 4);
+map.addEdge("Zeeks", "KerryPark", 3);
 map.addEdge("Zeeks", "SpaceNeedle", 6);
-map.removeNode("SpaceNeedle");
-console.log(map.adjacencyList)
+console.log(map.adjacencyList['KerryPark'])
+//console.log(map.findPathWithDijkstra("Zeeks", "ViaTrib"))
