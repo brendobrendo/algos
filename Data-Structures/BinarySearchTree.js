@@ -1,12 +1,63 @@
-// CREATE NODE AND BST CLASSES
+// Method with just BSTNode
+/**
+ * Implement: isEmpty, add, DFS (inOrder, preOrder, postOrder), BFS, removal, findMin, findMax
+ */
+class BSTNode {
+    constructor(val=0, left=null, right=null) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+
+    // addNode
+    addNode(val) {
+        let newNode = new BSTNode(val);
+        let runnerNode = this;
+        while (runnerNode) {
+            if (this.val <= newNode.val) {
+                if (this.right === null) {
+                    this.right = newNode;
+                    break
+                } else {
+                    runnerNode = runnerNode.right;
+                }
+            } else {
+                if (this.val > newNode.val) {
+                    if (this.left === null) {
+                        this.left = newNode;
+                        break;
+                    } else {
+                        runnerNode = runnerNode.left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+function arrayToBST(nums) {
+    if (nums.length === 0) return null;
+
+    let binarySearchTree = new BSTNode(nums[0])
+
+    for (let i=1; i<nums.length; i++) {
+        binarySearchTree.addNode(nums[i])
+    }
+
+    return binarySearchTree
+}
+
+let newTree = arrayToBST([2,5,9,1])
+console.log(newTree);
+
+
+// Other method with Node and BST classes
 class Node {
     constructor(val) {
         this.val = val;
         this.level = 0;
         this.leftNode = null;
         this.rightNode = null;
-
-        return this;
     }
 }
 
@@ -191,6 +242,10 @@ class BST {
         return vals;
     }
 
+    breadthFirstSearch(node = this.root, vals = []) {
+        let queue = [n];
+    }
+
     /**
      * Returns the number of nodes in the BST
      * @returns {Number} the number of nodes in the BST
@@ -200,21 +255,22 @@ class BST {
     }
 }
 
-const emptyTree = new BST();
-const oneLevelTree = new BST();
-oneLevelTree.root = new Node(4);
-const twoLevelTree = new BST();
-twoLevelTree.root = new Node(5);
-twoLevelTree.root.leftNode = new Node(4);
-twoLevelTree.root.rightNode = new Node(9);
+// const emptyTree = new BST();
+// const oneLevelTree = new BST();
+// oneLevelTree.root = new Node(4);
+// const twoLevelTree = new BST();
+// twoLevelTree.root = new Node(5);
+// twoLevelTree.root.leftNode = new Node(4);
+// twoLevelTree.root.rightNode = new Node(9);
 
-const testTree = new BST();
-testTree.insert(5);
-testTree.insert(4);
-testTree.insert(7);
+// const testTree = new BST();
+// testTree.insert(5);
+// testTree.insert(4);
+// testTree.insert(7);
 
-console.log(testTree.toArrPreorder());
-console.log(testTree.toArrInorder());
-console.log(testTree.size());
+// console.log(testTree.toArrPreorder());
+// console.log(testTree.toArrInorder());
+// console.log(testTree.toArrPostorder());
+// console.log(testTree.size());
 
 
