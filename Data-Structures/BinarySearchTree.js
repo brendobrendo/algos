@@ -68,10 +68,36 @@ function createPostOrder(binarySearchTree, vals=[]) {
     return vals;
 }
 
-let newTree = arrayToBST([2,5,9,1])
-console.log(createPreOrder(newTree));
-console.log(createInOrder(newTree));
-console.log(createPostOrder(newTree));
+function createBreadthFirst(binarySearchTree) {
+    // Create empty queue to return the noe vals in the order visited
+    let outputArray = [];
+    // Create queue to hold the nodes to visit next
+    let queue = [binarySearchTree];
+
+    while (queue.length > 0) {
+        let newElement = queue.shift();
+        outputArray.push(newElement.val);
+
+        if (newElement.left) queue.push(newElement.left);
+        if (newElement.right) queue.push(newElement.right);
+    }
+
+    return outputArray;
+}
+
+function getBalance(binarySearchTree) {
+    return getHeight(binarySearchTree.left) - getHeight(binarySearchTree.right)
+}
+
+function getHeight(binarySearchTree) {
+    heightLeft = binarySearchTree.left === null ? -1 : getHeight(binarySearchTree.left);
+    heightRight = binarySearchTree.right === null ? -1 : getHeight(binarySearchTree.right)
+
+    return Math.max(heightLeft, heightRight) + 1;
+}
+
+let newTree = arrayToBST([2,5,9,1,11])
+console.log(getBalance(newTree))
 
 
 // Other method with Node and BST classes
