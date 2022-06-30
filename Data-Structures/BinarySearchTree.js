@@ -14,17 +14,17 @@ class BSTNode {
         let newNode = new BSTNode(val);
         let runnerNode = this;
         while (runnerNode) {
-            if (this.val <= newNode.val) {
-                if (this.right === null) {
-                    this.right = newNode;
+            if (runnerNode.val <= newNode.val) {
+                if (runnerNode.right === null) {
+                    runnerNode.right = newNode;
                     break
                 } else {
                     runnerNode = runnerNode.right;
                 }
             } else {
-                if (this.val > newNode.val) {
-                    if (this.left === null) {
-                        this.left = newNode;
+                if (runnerNode.val > newNode.val) {
+                    if (runnerNode.left === null) {
+                        runnerNode.left = newNode;
                         break;
                     } else {
                         runnerNode = runnerNode.left;
@@ -47,8 +47,31 @@ function arrayToBST(nums) {
     return binarySearchTree
 }
 
+function createPreOrder(binarySearchTree, vals=[]) {
+    vals.push(binarySearchTree.val);
+    if (binarySearchTree.left) createPreOrder(binarySearchTree.left, vals);
+    if (binarySearchTree.right) createPreOrder(binarySearchTree.right, vals);
+    return vals;
+}
+
+function createInOrder(binarySearchTree, vals=[]) {
+    if (binarySearchTree.left) createPreOrder(binarySearchTree.left, vals);
+    vals.push(binarySearchTree.val);
+    if (binarySearchTree.right) createPreOrder(binarySearchTree.right, vals);
+    return vals;
+}
+
+function createPostOrder(binarySearchTree, vals=[]) {
+    if (binarySearchTree.left) createPreOrder(binarySearchTree.left, vals);
+    if (binarySearchTree.right) createPreOrder(binarySearchTree.right, vals);
+    vals.push(binarySearchTree.val);
+    return vals;
+}
+
 let newTree = arrayToBST([2,5,9,1])
-console.log(newTree);
+console.log(createPreOrder(newTree));
+console.log(createInOrder(newTree));
+console.log(createPostOrder(newTree));
 
 
 // Other method with Node and BST classes
